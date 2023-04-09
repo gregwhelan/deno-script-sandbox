@@ -1,6 +1,6 @@
 // Use this to mimic a new script request
 
-fetch("http://localhost:3001/script", {
+fetch("http://localhost:3003/script", {
   method: "POST",
   body: `
 console.log("hi!");

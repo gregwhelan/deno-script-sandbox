@@ -1,6 +1,6 @@
 const scriptId = Deno.args[0] /* `scriptId=b` */.split("=")[1];
 const scriptPath = Deno.args[1] /* `scriptPath=/a/b.ts` */.split("=")[1];
-const scriptProxy = "http://localhost:3001/proxy";
+const scriptProxy = "http://127.0.0.1:3003/proxy";
 const scriptAuthHeaders = {
   "x-script-id": scriptId,
 };
@@ -25,6 +25,8 @@ globalThis.fetch = (
   };
   return realFetch(scriptProxy, init);
 };
+
+self.fetch = globalThis.fetch;
 
 try {
   // Here's where we run user code
