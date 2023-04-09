@@ -3,7 +3,7 @@ import { type ConnInfo } from "https://deno.land/std@0.125.0/http/server.ts";
 import {serve} from "https://deno.land/std@0.176.0/http/mod.ts";
 import {createScript, safeURL, safeURLs} from "./utils.ts";
 
-// Sandboxed validation are only allowed to reach the internet via
+// Sandboxed scripts are only allowed to reach the internet via
 // this proxy (enforced via --allow-net).
 const PROXY_LOCATION = "127.0.0.1:3003";
 
@@ -15,7 +15,7 @@ const SCRIPT_SIZE_LIMIT = 1_000_000; // 1MB in bytes
 const CONCURRENCY_LIMIT = 3;
 const conurrencyMutex = new Semaphore(CONCURRENCY_LIMIT);
 
-// Track validation that are running so that we can:
+// Track scripts that are running so that we can:
 // - auth requests to the proxy
 // - limit the number of requests per script
 const inFlightScriptIds: Record<string, number> = {};
